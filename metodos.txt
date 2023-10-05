@@ -1,0 +1,58 @@
+1)Crear Evento:
+public void agregarActividad(String fecha, String hora, String descripcion) {
+        Actividad actividad = new Actividad(fecha, hora, descripcion);
+        actividades.add(actividad);
+}
+
+2)Editar Evento:
+public void modificarActividad(int indice, String nuevaFecha, String nuevaHora, String nuevaDescripcion) {
+        if (indice >= 0 && indice < actividades.size()) {
+            Actividad actividad = actividades.get(indice);
+            actividad.setFecha(nuevaFecha);
+            actividad.setHora(nuevaHora);
+            actividad.setDescripcion(nuevaDescripcion);
+            System.out.println("Actividad modificada correctamente.");
+        } else {
+            System.out.println("Índice de actividad inválido.");
+        }
+}
+
+3)Eliminar Evento:
+public void eliminarActividad(int indice) {
+        if (indice >= 0 && indice < actividades.size()) {
+            actividades.remove(indice);
+            System.out.println("Actividad eliminada correctamente.");
+        } else {
+            System.out.println("Índice de actividad inválido.");
+        }
+}
+
+4)Mostrar Calendario:
+public void mostrarActividades() {
+        System.out.println("Actividades en el calendario:");
+        for (int i = 0; i < actividades.size(); i++) {
+            System.out.println((i + 1) + ". " + actividades.get(i));
+        }
+}
+
+5)Categorizar Eventos:
+public void marcarActividadComoCompletada(int indice) {
+        if (indice >= 0 && indice < actividades.size()) {
+            Actividad actividad = actividades.get(indice);
+            actividad.marcarComoCompletada();
+            System.out.println("Actividad marcada como completada.");
+        } else {
+            System.out.println("Índice de actividad inválido.");
+        }
+}
+
+6)Vista de Tareas Pendientes:
+public void mostrarActividadesPendientes() {
+        System.out.println("Actividades pendientes en el calendario:");
+        for (int i = 0; i < actividades.size(); i++) {
+            Actividad actividad = actividades.get(i);
+            if (!actividad.isCompletada()) {
+                System.out.println((i + 1) + ". " + actividad);
+            }
+        }
+}
