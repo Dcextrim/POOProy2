@@ -9,24 +9,36 @@ public class Calendario {
         actividades = new ArrayList<>();
     }
 
+    // Metodo para Agregar Actividades
     public void agregarActividad(String fecha, String hora, String descripcion) {
         Actividad actividad = new Actividad(fecha, hora, descripcion, false);
         actividades.add(actividad);
     }
 
-    //Metodo para Agregar Actividades
-    
+    // Metodo para Mostrar Actividades
+    public void mostrarActividades() {
+        System.out.println("Actividades en el calendario:");
+        for (int i = 0; i < actividades.size(); i++) {
+            System.out.println((i + 1) + ". " + actividades.get(i));
+        }
+    }
 
-    //Metodo para Mostrar Actividades Pendientes
-    
+    // Metodo para Mostrar Actividades Pendientes
+    public void mostrarActividadesPendientes() {
+        System.out.println("Actividades pendientes en el calendario:");
+        for (int i = 0; i < actividades.size(); i++) {
+            Actividad actividad = actividades.get(i);
+            if (!actividad.isCompletada()) {
+                System.out.println((i + 1) + ". " + actividad);
+            }
+        }
+    }
 
-    //Metodo para Marcar Actividades como Completadas
-    
+    // Metodo para Marcar Actividades como Completadas
 
-    //Metodo para Eliminar Actividades
-    
+    // Metodo para Eliminar Actividades
 
-    //Metodo Para Modificar Actividades
+    // Metodo Para Modificar Actividades
     public void modificarActividad(int indice, String nuevaFecha, String nuevaHora, String nuevaDescripcion) {
         if (indice >= 0 && indice < actividades.size()) {
             Actividad actividad = actividades.get(indice);
@@ -39,7 +51,7 @@ public class Calendario {
         }
     }
 
-    //Metodo Para Ejecutar el Menu de Actividades
+    // Metodo Para Ejecutar el Menu de Actividades
     public void ejecutarMenu() {
 
         Calendario calendario = new Calendario();
@@ -59,7 +71,7 @@ public class Calendario {
                 break;
             }
             switch (opcion) {
-                case 1://Opcion para Ingresar Actividad
+                case 1:// Opcion para Ingresar Actividad
                     System.out.print("Ingrese la fecha (dd/mm/yyyy): ");
                     String fecha = scanner.next();
                     System.out.print("Ingrese la hora (hh:mm): ");
@@ -69,15 +81,15 @@ public class Calendario {
                     String descripcion = scanner.nextLine();
                     calendario.agregarActividad(fecha, hora, descripcion);
                     break;
-                case 2://Opcion para Mostrar Actividades
+                case 2:// Opcion para Mostrar Actividades
                     calendario.mostrarActividades();
                     break;
-                case 3://Opcion para Eliminar Actividad
+                case 3:// Opcion para Eliminar Actividad
                     System.out.print("Ingrese el número de actividad a eliminar: ");
                     int indiceEliminar = scanner.nextInt() - 1; // Restar 1 para coincidir con el índice de la lista
                     calendario.eliminarActividad(indiceEliminar);
                     break;
-                case 4://Opcion para Modificar Actividad
+                case 4:// Opcion para Modificar Actividad
                     System.out.print("Ingrese el número de actividad a modificar: ");
                     int indiceModificar = scanner.nextInt() - 1; // Restar 1 para coincidir con el índice de la lista
                     System.out.print("Ingrese la nueva fecha (dd/mm/yyyy): ");
@@ -89,14 +101,14 @@ public class Calendario {
                     String nuevaDescripcion = scanner.nextLine();
                     calendario.modificarActividad(indiceModificar, nuevaFecha, nuevaHora, nuevaDescripcion);
                     break;
-                case 5 ://Opción para mostrar actividades pendientes
-                calendario.mostrarActividadesPendientes();
-                break;
-                case 6://Opción para marcar actividad como completada
-                System.out.print("Ingrese el número de actividad a marcar como completada: ");
-                int indiceCompletada = scanner.nextInt() - 1;
-                calendario.marcarActividadComoCompletada(indiceCompletada);
-                break;
+                case 5:// Opción para mostrar actividades pendientes
+                    calendario.mostrarActividadesPendientes();
+                    break;
+                case 6:// Opción para marcar actividad como completada
+                    System.out.print("Ingrese el número de actividad a marcar como completada: ");
+                    int indiceCompletada = scanner.nextInt() - 1;
+                    calendario.marcarActividadComoCompletada(indiceCompletada);
+                    break;
                 default:
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
             }
